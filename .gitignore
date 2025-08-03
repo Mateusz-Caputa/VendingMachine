@@ -5,3 +5,7 @@
 
 # Ignore build output directory
 /build/
+
+# Ignore system files
+.DS_Store
+Thumbs.db

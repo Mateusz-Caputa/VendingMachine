@@ -8,9 +8,17 @@ const std::string &Product::getName() const
 {
     return name;
 }
-
-double Product::getPrice() const
+template <>
+double Product::getPrice<double>()
 {
     return price;
 }
 
+template <>
+std::string Product::getPrice<std::string>()
+{
+    std::ostringstream oss;
+    oss.precision(2);
+    oss << "\x9C" << std::fixed << price;
+    return oss.str();
+}

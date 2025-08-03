@@ -12,7 +12,9 @@
 class VendingMachine
 {
 public:
-    VendingMachine(std::vector<int> set_rowLabels, std::vector<std::string> set_columnLabels, int set_slotProductCapacity);
+    VendingMachine(std::string set_name, std::vector<int> set_rowLabels, std::vector<std::string> set_columnLabels, int set_slotProductCapacity);
+
+    const std::string &getName() const;
 
     const std::vector<int> &getRowLabels() const;
     const std::vector<std::string> &getColumnLabels() const;
@@ -24,6 +26,8 @@ public:
     int getSlotProductCapacity() const;
 
 private:
+    std::string name;
+
     int slotProductCapacity = 12;
     std::vector<int> rowLabels;
     std::vector<std::string> columnLabels;

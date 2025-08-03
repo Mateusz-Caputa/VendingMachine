@@ -4,6 +4,7 @@
 #define PRODUCT_HPP
 
 #include <string>
+#include <sstream>
 
 class Product
 {
@@ -12,11 +13,19 @@ public:
     Product(std::string set_name, double set_price);
 
     const std::string &getName() const;
-    double getPrice() const;
+
+    template <typename T>
+    T getPrice();
 
 private:
     std::string name;
     double price = 0.0;
 };
+
+template <>
+double Product::getPrice<double>();
+
+template <>
+std::string Product::getPrice<std::string>();
 
 #endif

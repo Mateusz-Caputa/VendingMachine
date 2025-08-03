@@ -2,8 +2,8 @@
 
 #include "VendingMachine.hpp"
 
-VendingMachine::VendingMachine(std::vector<int> set_rowLabels, std::vector<std::string> set_columnLabels, int set_slotProductCapacity)
-    : rowLabels(std::move(set_rowLabels)), columnLabels(std::move(set_columnLabels)), slotProductCapacity(set_slotProductCapacity)
+VendingMachine::VendingMachine(std::string set_name, std::vector<int> set_rowLabels, std::vector<std::string> set_columnLabels, int set_slotProductCapacity)
+    : name(set_name), rowLabels(std::move(set_rowLabels)), columnLabels(std::move(set_columnLabels)), slotProductCapacity(set_slotProductCapacity)
 {
     for (const auto &rowLabel : rowLabels)
     {
@@ -13,6 +13,11 @@ VendingMachine::VendingMachine(std::vector<int> set_rowLabels, std::vector<std::
             vendingSlots[vendingSlotLabel] = VendingSlot(rowLabel, columnLabel, slotProductCapacity);
         }
     }
+}
+
+const std::string &VendingMachine::getName() const
+{
+    return name;
 }
 
 const std::vector<int> &VendingMachine::getRowLabels() const

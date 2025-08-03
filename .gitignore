@@ -1,0 +1,7 @@
+# File - .gitignore
+
+# Ignore Visual Studio Code settings
+.vscode/*
+
+# Ignore build output directory
+/build/

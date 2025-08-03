@@ -2,13 +2,45 @@
 
 #include "VendingMachine.hpp"
 
-VendingMachine::VendingMachine(const std::vector<int>& set_rowLabels, const std::vector<std::string> set_columnLabels): rowLabels(set_rowLabels), columnLabels(set_columnLabels){}
+VendingMachine::VendingMachine(std::vector<int> set_rowLabels, std::vector<std::string> set_columnLabels, int set_slotProductCapacity)
+    : rowLabels(std::move(set_rowLabels)), columnLabels(std::move(set_columnLabels)), slotProductCapacity(set_slotProductCapacity)
+{
+    for (const auto &rowLabel : rowLabels)
+    {
+        for (const auto &columnLabel : columnLabels)
+        {
+            std::string vendingSlotLabel = columnLabel + std::to_string(rowLabel);
+            vendingSlots[vendingSlotLabel] = VendingSlot(rowLabel, columnLabel, slotProductCapacity);
+        }
+    }
+}
 
-const std::vector<int>& VendingMachine::getRowLabels() const {
+const std::vector<int> &VendingMachine::getRowLabels() const
+{
     return rowLabels;
 }
 
-const std::vector<std::string>& VendingMachine::getColumnLabels() const {
+const std::vector<std::string> &VendingMachine::getColumnLabels() const
+{
     return columnLabels;
 }
 
+const std::unordered_map<std::string, VendingSlot> &VendingMachine::getVendingSlots() const
+{
+    return vendingSlots;
+}
+
+VendingSlot VendingMachine::getVendingSlot(const std::string &vendingSlotLabel) const
+{
+    auto it = vendingSlots.find(vendingSlotLabel);
+    if (it != vendingSlots.end())
+    {
+        return it->second;
+    }
+
+    return VendingSlot();
+}
+
+int VendingMachine::getSlotProductCapacity() const{
+    return slotProductCapacity;
+}

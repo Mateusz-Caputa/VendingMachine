@@ -5,15 +5,29 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
-class VendingMachine{
+#include "VendingSlot.hpp"
+
+class VendingMachine
+{
 public:
-    VendingMachine(const std::vector<int>& set_rowLabels, const std::vector<std::string> set_columnLabels);
+    VendingMachine(std::vector<int> set_rowLabels, std::vector<std::string> set_columnLabels, int set_slotProductCapacity);
 
-    const std::vector<int>& getRowLabels() const;
-    const std::vector<std::string>& getColumnLabels() const;
+    const std::vector<int> &getRowLabels() const;
+    const std::vector<std::string> &getColumnLabels() const;
+
+    const std::unordered_map<std::string, VendingSlot> &getVendingSlots() const;
+    VendingSlot getVendingSlot(const std::string &slotLabel) const;
+
+    int getSlotProductCapacity() const;
+
 private:
+    int slotProductCapacity = 12;
     std::vector<int> rowLabels;
     std::vector<std::string> columnLabels;
+
+    std::unordered_map<std::string, VendingSlot> vendingSlots;
 };
+
 #endif

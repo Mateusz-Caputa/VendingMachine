@@ -18,7 +18,8 @@ public:
     const std::vector<std::string> &getColumnLabels() const;
 
     const std::unordered_map<std::string, VendingSlot> &getVendingSlots() const;
-    VendingSlot getVendingSlot(const std::string &slotLabel) const;
+
+    VendingSlot *getVendingSlot(const std::string &vendingSlotLabel);
 
     int getSlotProductCapacity() const;
 

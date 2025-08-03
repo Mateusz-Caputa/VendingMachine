@@ -30,17 +30,18 @@ const std::unordered_map<std::string, VendingSlot> &VendingMachine::getVendingSl
     return vendingSlots;
 }
 
-VendingSlot VendingMachine::getVendingSlot(const std::string &vendingSlotLabel) const
+VendingSlot *VendingMachine::getVendingSlot(const std::string &vendingSlotLabel)
 {
     auto it = vendingSlots.find(vendingSlotLabel);
     if (it != vendingSlots.end())
     {
-        return it->second;
+        return &it->second;
     }
 
-    return VendingSlot();
+    return nullptr;
 }
 
-int VendingMachine::getSlotProductCapacity() const{
+int VendingMachine::getSlotProductCapacity() const
+{
     return slotProductCapacity;
 }

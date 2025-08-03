@@ -19,6 +19,10 @@ public:
     std::string getLabel() const;
 
     int getCapacity() const;
+    int addProduct(const Product &product);
+    int addProduct(const Product &product, size_t index);
+
+    std::optional<Product> getFrontProduct() const;
 
 private:
     int rowLabel = -1;

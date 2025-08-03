@@ -20,6 +20,52 @@ std::string VendingSlot::getLabel() const
     return columnLabel + std::to_string(rowLabel);
 }
 
-int VendingSlot::getCapacity() const {
+int VendingSlot::getCapacity() const
+{
     return capacity;
+}
+
+int VendingSlot::addProduct(const Product &product)
+{
+    for (size_t i = 0; i < productSlots.size(); ++i)
+    {
+        if (productSlots[i].isEmpty())
+        {
+            productSlots[i].setProduct(product);
+            return static_cast<int>(i);
+        }
+    }
+
+    return -1;
+}
+
+int VendingSlot::addProduct(const Product &product, size_t index)
+{
+    if (index >= productSlots.size())
+    {
+        return -1;
+    }
+
+    if (productSlots[index].isEmpty())
+    {
+        productSlots[index].setProduct(product);
+
+        return index;
+    }
+
+    return -1;
+}
+
+std::optional<Product> VendingSlot::getFrontProduct() const
+{
+    for (auto &productSlot : productSlots)
+    {
+        if (!productSlot.isEmpty())
+        {
+
+            return productSlot.getProduct();
+        }
+    }
+
+    return std::nullopt;
 }

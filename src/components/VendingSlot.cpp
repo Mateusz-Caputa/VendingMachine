@@ -1,4 +1,4 @@
-// File - src\components\VendingSlot.hpp
+// File - src\components\VendingSlot.cop
 
 #include "VendingSlot.hpp"
 
